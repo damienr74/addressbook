@@ -1,5 +1,12 @@
 language: java
 jdk:
 - oraclejdk8
-
 sudo: false
+deploy:
+  provider: heroku
+  api_key:
+    secure: T4oGvLLNAr/4J6tD9ZOM3nG3juFgj7kJ8QVbMZi9/yTVxksWLV/jODFKNKhDue3FiQ74whLvVXnu1l6UgESuEBf4CT3On9UB9WCFfjTZC8pJKIJrAGOvzUCYNGpMtBoLQ1Ahg4xY7FAPNa+axH0i6MDEmCTa+lK4do7CPC9sf85YoPSK8vSjx4/Id/3faANcCLda9SQozgNWPY/QjdawfnzCH5ldBtk1dAawPwUXmm/zyWtc1xJBwvR72/TvVi/gtaYeiahGZNfzNdFT5UpGIo3cTgx7OTshW/MQoWcz0puqWq3ncRXVO3S4fp8a2KONH0UzgfU0cm4wPLwmRyvDJ32CM+e9ziPtGJtuju6l11UhDnx1nNTx96IGIr+27Jt6DoLvnr0HXj4O70yjQ6aVkid5Dh9iPyuX3fDBqya7b2O//kQElMVNHqDzw6D8MlKCCCB8sHLPxLmakb9HuPlraVagTe3KIVCwi/y+riGuWpPdZvSkUXhz6CWEIcPobPO9UCfCa3us3RJCchbvlxPbTES2DuMtuE/UUuHor4ThBT45mwPMukV4Qc1uxioOxWBPzyxl+5V1gdzrmfydcwPNSGsGMHd+WjBSkl+HFJBsgM9DtjkBWNl4XO+f4aqEGBhxhrKKilM3FT9eNPnwlDDUT/X2D1yLRac+3pkmmrk0dnI=
+  app: vaadin-todo-damienr74
+  on:
+    repo: damienr74/addressbook
+    branch: todo_task
