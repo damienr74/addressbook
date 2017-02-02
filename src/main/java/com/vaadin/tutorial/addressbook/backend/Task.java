@@ -19,9 +19,9 @@ public class Task implements Serializable, Cloneable {
 
 	private String firstName = "";
 	private String lastName = "";
-	private String phone = "";
-	private String email = "";
-	private Date birthDate;
+	private String taskDesc = "";
+	private Date startDate;
+	private Date endDate;
 
 	public Long getId() {
 		return id;
@@ -47,33 +47,34 @@ public class Task implements Serializable, Cloneable {
 		this.lastName = lastName;
 	}
 
-	public String getPhone() {
-		return phone;
+	public Date getStartDate() {
+		return startDate;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
 
-	public String getEmail() {
-		return email;
+	public Date getEndDate() {
+		return endDate;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
-	public Date getBirthDate() {
-		return birthDate;
+	public String getTaskDesc() {
+		return taskDesc;
 	}
 
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
+	public void setTaskDesc(String taskDesc) {
+		this.taskDesc = taskDesc;
 	}
 
 	@Override
 	public Task clone() throws CloneNotSupportedException {
 		try {
+			System.out.println(BeanUtils.cloneBean(this));
 			return (Task) BeanUtils.cloneBean(this);
 		} catch (Exception ex) {
 			throw new CloneNotSupportedException();
@@ -82,9 +83,9 @@ public class Task implements Serializable, Cloneable {
 
 	@Override
 	public String toString() {
-		return "Task{" + "id=" + id + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", phone=" + phone + ", email="
-				+ email + ", birthDate=" + birthDate + '}';
+		return "Task{" + "id=" + id + ", firstName=" + firstName +
+			", lastName=" + lastName + ", taskDesc=" + taskDesc +
+			", startDate=" + startDate + ", endDate=" + endDate + '}';
 	}
 
 }

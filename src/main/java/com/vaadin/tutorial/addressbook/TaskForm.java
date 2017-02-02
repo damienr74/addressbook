@@ -12,6 +12,7 @@ import com.vaadin.v7.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.v7.data.fieldgroup.FieldGroup;
 import com.vaadin.v7.ui.DateField;
 import com.vaadin.v7.ui.TextField;
+import com.vaadin.v7.ui.TextArea;
 
 /* Create custom UI Components.
  *
@@ -27,9 +28,9 @@ public class TaskForm extends FormLayout {
 	Button cancel = new Button("Cancel", this::cancel);
 	TextField firstName = new TextField("First name");
 	TextField lastName = new TextField("Last name");
-	TextField phone = new TextField("Phone");
-	TextField email = new TextField("Email");
-	DateField birthDate = new DateField("Birth date");
+	TextArea taskDesc = new TextArea("Task");
+	DateField startDate = new DateField("Start date");
+	DateField endDate = new DateField("End date");
 
 	Task task;
 
@@ -60,7 +61,8 @@ public class TaskForm extends FormLayout {
 		HorizontalLayout actions = new HorizontalLayout(save, cancel);
 		actions.setSpacing(true);
 
-		addComponents(actions, firstName, lastName, phone, email, birthDate);
+		addComponents(actions, firstName, lastName, taskDesc,
+				startDate, endDate);
 	}
 
 	/*
@@ -82,8 +84,7 @@ public class TaskForm extends FormLayout {
 			// Save DAO to backend with direct synchronous service API
 			getUI().service.save(task);
 
-			String msg = String.format("Saved '%s %s'.", task.getFirstName(),
-					task.getLastName());
+			String msg = String.format("Saved '%s'.", task.getTaskDesc());
 			Notification.show(msg, Type.TRAY_NOTIFICATION);
 			getUI().refreshTasks();
 		} catch (FieldGroup.CommitException e) {

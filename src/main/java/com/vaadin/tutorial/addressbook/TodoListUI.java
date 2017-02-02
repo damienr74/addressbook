@@ -74,12 +74,11 @@ public class TodoListUI extends UI {
 		filter.setInputPrompt("Filter tasks...");
 		filter.addTextChangeListener(e -> refreshTasks(e.getText()));
 
-		taskList
-				.setContainerDataSource(new BeanItemContainer<>(Task.class));
-		taskList.setColumnOrder("firstName", "lastName", "email");
+		taskList.setContainerDataSource(new BeanItemContainer<>(Task.class));
+		taskList.setColumnOrder("firstName", "lastName", "taskDesc",
+				"startDate", "endDate");
+		taskList.getColumn("taskDesc").setMaximumWidth(400);
 		taskList.removeColumn("id");
-		taskList.removeColumn("birthDate");
-		taskList.removeColumn("phone");
 		taskList.setSelectionMode(Grid.SelectionMode.SINGLE);
 		taskList.addSelectionListener(
 				e -> taskForm.edit((Task) taskList.getSelectedRow()));

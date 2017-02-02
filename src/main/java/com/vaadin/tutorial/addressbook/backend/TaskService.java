@@ -17,13 +17,16 @@ public class TaskService {
 
 	// Create dummy data by randomly combining first and last names
 	static String[] fnames = { "Peter", "Alice", "John", "Mike", "Olivia",
-			"Nina", "Alex", "Rita", "Dan", "Umberto", "Henrik", "Rene", "Lisa",
-			"Linda", "Timothy", "Daniel", "Brian", "George", "Scott",
-			"Jennifer" };
+		"Nina", "Alex", "Rita", "Dan", "Umberto", "Henrik", "Rene", "Lisa",
+		"Linda", "Timothy", "Daniel", "Brian", "George", "Scott", "Jennifer" };
+
 	static String[] lnames = { "Smith", "Johnson", "Williams", "Jones",
-			"Brown", "Davis", "Miller", "Wilson", "Moore", "Taylor",
-			"Anderson", "Thomas", "Jackson", "White", "Harris", "Martin",
-			"Thompson", "Young", "King", "Robinson" };
+		"Brown", "Davis", "Miller", "Wilson", "Moore", "Taylor", "Anderson",
+		"Thomas", "Jackson", "White", "Harris", "Martin", "Thompson", "Young",
+		"King", "Robinson" };
+
+	static String[] taskItems = { "Do the dishes", "Clean bathroom",
+			"FINISH THIS ASSIGNMENT", "Wash clothes" };
 
 	private static TaskService instance;
 
@@ -33,17 +36,24 @@ public class TaskService {
 			final TaskService taskService = new TaskService();
 
 			Random r = new Random(0);
-			Calendar cal = Calendar.getInstance();
+			Calendar firstDate = Calendar.getInstance();
+			Calendar secondDate = Calendar.getInstance();
 			for (int i = 0; i < 100; i++) {
 				Task task = new Task();
 				task.setFirstName(fnames[r.nextInt(fnames.length)]);
 				task.setLastName(lnames[r.nextInt(fnames.length)]);
-				task.setEmail(task.getFirstName().toLowerCase() + "@"
-						+ task.getLastName().toLowerCase() + ".com");
-				task.setPhone("+ 358 555 " + (100 + r.nextInt(900)));
-				cal.set(1930 + r.nextInt(70),
-						r.nextInt(11), r.nextInt(28));
-				task.setBirthDate(cal.getTime());
+				task.setTaskDesc(taskItems[r.nextInt(taskItems.length)]);
+				firstDate.set(2017, r.nextInt(11), r.nextInt(28));
+				secondDate.set(2017, r.nextInt(11), r.nextInt(28));
+
+				if (firstDate.before(secondDate)) {
+					task.setStartDate(firstDate.getTime());
+					task.setEndDate(secondDate.getTime());
+				} else {
+					task.setStartDate(secondDate.getTime());
+					task.setEndDate(firstDate.getTime());
+				}
+
 				taskService.save(task);
 			}
 			instance = taskService;
