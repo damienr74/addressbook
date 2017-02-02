@@ -19,7 +19,7 @@ public class Task implements Serializable, Cloneable {
 
 	private String firstName = "";
 	private String lastName = "";
-	private String taskDesc = "";
+	private String taskDescription = "";
 	private Date startDate;
 	private Date endDate;
 
@@ -63,18 +63,17 @@ public class Task implements Serializable, Cloneable {
 		this.endDate = endDate;
 	}
 
-	public String getTaskDesc() {
-		return taskDesc;
+	public String getTaskDescription() {
+		return taskDescription;
 	}
 
-	public void setTaskDesc(String taskDesc) {
-		this.taskDesc = taskDesc;
+	public void setTaskDescription(String taskDescription) {
+		this.taskDescription = taskDescription;
 	}
 
 	@Override
 	public Task clone() throws CloneNotSupportedException {
 		try {
-			System.out.println(BeanUtils.cloneBean(this));
 			return (Task) BeanUtils.cloneBean(this);
 		} catch (Exception ex) {
 			throw new CloneNotSupportedException();
@@ -84,7 +83,7 @@ public class Task implements Serializable, Cloneable {
 	@Override
 	public String toString() {
 		return "Task{" + "id=" + id + ", firstName=" + firstName +
-			", lastName=" + lastName + ", taskDesc=" + taskDesc +
+			", lastName=" + lastName + ", taskDescription=" + taskDescription +
 			", startDate=" + startDate + ", endDate=" + endDate + '}';
 	}
 

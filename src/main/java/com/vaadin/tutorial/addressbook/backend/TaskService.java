@@ -42,7 +42,7 @@ public class TaskService {
 				Task task = new Task();
 				task.setFirstName(fnames[r.nextInt(fnames.length)]);
 				task.setLastName(lnames[r.nextInt(fnames.length)]);
-				task.setTaskDesc(taskItems[r.nextInt(taskItems.length)]);
+				task.setTaskDescription(taskItems[r.nextInt(taskItems.length)]);
 				firstDate.set(2017, r.nextInt(11), r.nextInt(28));
 				secondDate.set(2017, r.nextInt(11), r.nextInt(28));
 

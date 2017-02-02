@@ -28,7 +28,7 @@ public class TaskForm extends FormLayout {
 	Button cancel = new Button("Cancel", this::cancel);
 	TextField firstName = new TextField("First name");
 	TextField lastName = new TextField("Last name");
-	TextArea taskDesc = new TextArea("Task");
+	TextArea taskDescription = new TextArea("Task Description");
 	DateField startDate = new DateField("Start date");
 	DateField endDate = new DateField("End date");
 
@@ -61,7 +61,7 @@ public class TaskForm extends FormLayout {
 		HorizontalLayout actions = new HorizontalLayout(save, cancel);
 		actions.setSpacing(true);
 
-		addComponents(actions, firstName, lastName, taskDesc,
+		addComponents(actions, firstName, lastName, taskDescription,
 				startDate, endDate);
 	}
 
@@ -84,7 +84,7 @@ public class TaskForm extends FormLayout {
 			// Save DAO to backend with direct synchronous service API
 			getUI().service.save(task);
 
-			String msg = String.format("Saved '%s'.", task.getTaskDesc());
+			String msg = String.format("Saved '%s'.", task.getTaskDescription());
 			Notification.show(msg, Type.TRAY_NOTIFICATION);
 			getUI().refreshTasks();
 		} catch (FieldGroup.CommitException e) {
@@ -96,6 +96,7 @@ public class TaskForm extends FormLayout {
 		// Place to call business logic.
 		Notification.show("Cancelled", Type.TRAY_NOTIFICATION);
 		getUI().taskList.select(null);
+		setVisible(false);
 	}
 
 	void edit(Task task) {
