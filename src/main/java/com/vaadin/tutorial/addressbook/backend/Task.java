@@ -13,7 +13,7 @@ import java.util.Date;
  */
 // Backend DTO class. This is just a typical Java backend implementation
 // class and nothing Vaadin specific.
-public class Contact implements Serializable, Cloneable {
+public class Task implements Serializable, Cloneable {
 
 	private Long id;
 
@@ -72,9 +72,9 @@ public class Contact implements Serializable, Cloneable {
 	}
 
 	@Override
-	public Contact clone() throws CloneNotSupportedException {
+	public Task clone() throws CloneNotSupportedException {
 		try {
-			return (Contact) BeanUtils.cloneBean(this);
+			return (Task) BeanUtils.cloneBean(this);
 		} catch (Exception ex) {
 			throw new CloneNotSupportedException();
 		}
@@ -82,7 +82,7 @@ public class Contact implements Serializable, Cloneable {
 
 	@Override
 	public String toString() {
-		return "Contact{" + "id=" + id + ", firstName=" + firstName
+		return "Task{" + "id=" + id + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", phone=" + phone + ", email="
 				+ email + ", birthDate=" + birthDate + '}';
 	}

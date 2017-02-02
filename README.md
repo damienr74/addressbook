@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/damienr74/addressbook.png)]
+(https://travis-ci.org/damienr74/addressbook)
+
 Addressbook Tutorial
 ====================
 
