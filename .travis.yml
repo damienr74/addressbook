@@ -9,4 +9,4 @@ deploy:
   app: vaadin-todo-damienr74
   on:
     repo: damienr74/addressbook
-    branch: todo_task
+    branch: master
