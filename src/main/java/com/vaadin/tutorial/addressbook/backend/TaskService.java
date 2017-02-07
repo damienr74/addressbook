@@ -26,7 +26,10 @@ public class TaskService {
 		"King", "Robinson" };
 
 	static String[] taskItems = { "Do the dishes", "Clean bathroom",
-			"FINISH THIS ASSIGNMENT", "Wash clothes" };
+			"FINISH THIS ASSIGNMENT", "Wash clothes",
+			"The Worldly Hope men set their Hearts upon Turns Ashes -- "+
+			"or it prospers; and anon, Like Snow upon the Desert's dusty Face"+
+			"Lighting a little Hour or two -- is gone." };
 
 	private static TaskService instance;
 
@@ -42,16 +45,16 @@ public class TaskService {
 				Task task = new Task();
 				task.setFirstName(fnames[r.nextInt(fnames.length)]);
 				task.setLastName(lnames[r.nextInt(fnames.length)]);
-				task.setTaskDescription(taskItems[r.nextInt(taskItems.length)]);
+				task.setTask(taskItems[r.nextInt(taskItems.length)]);
 				firstDate.set(2017, r.nextInt(11), r.nextInt(28));
 				secondDate.set(2017, r.nextInt(11), r.nextInt(28));
 
 				if (firstDate.before(secondDate)) {
 					task.setStartDate(firstDate.getTime());
-					task.setEndDate(secondDate.getTime());
+					task.setExpectedEndDate(secondDate.getTime());
 				} else {
 					task.setStartDate(secondDate.getTime());
-					task.setEndDate(firstDate.getTime());
+					task.setExpectedEndDate(firstDate.getTime());
 				}
 
 				taskService.save(task);

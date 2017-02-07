@@ -26,13 +26,14 @@ public class TaskForm extends FormLayout {
 
 	Button save = new Button("Save", this::save);
 	Button cancel = new Button("Cancel", this::cancel);
+	Button delete = new Button("Delete", this::delete);
 	TextField firstName = new TextField("First name");
 	TextField lastName = new TextField("Last name");
-	TextArea taskDescription = new TextArea("Task Description");
+	TextArea task = new TextArea("Task");
 	DateField startDate = new DateField("Start date");
-	DateField endDate = new DateField("End date");
+	DateField expectedEndDate = new DateField("Expected end date");
 
-	Task task;
+	Task currentTask;
 
 	// Easily bind forms to beans and manage validation and buffering
 	BeanFieldGroup<Task> formFieldBindings;
@@ -61,8 +62,8 @@ public class TaskForm extends FormLayout {
 		HorizontalLayout actions = new HorizontalLayout(save, cancel);
 		actions.setSpacing(true);
 
-		addComponents(actions, firstName, lastName, taskDescription,
-				startDate, endDate);
+		addComponents(firstName, lastName, task,
+				startDate, expectedEndDate, actions, delete);
 	}
 
 	/*
@@ -82,9 +83,9 @@ public class TaskForm extends FormLayout {
 			formFieldBindings.commit();
 
 			// Save DAO to backend with direct synchronous service API
-			getUI().service.save(task);
+			getUI().service.save(currentTask);
 
-			String msg = String.format("Saved '%s'.", task.getTaskDescription());
+			String msg = String.format("Saved '%s'.", currentTask.getTask());
 			Notification.show(msg, Type.TRAY_NOTIFICATION);
 			getUI().refreshTasks();
 		} catch (FieldGroup.CommitException e) {
@@ -99,15 +100,22 @@ public class TaskForm extends FormLayout {
 		setVisible(false);
 	}
 
-	void edit(Task task) {
-		this.task = task;
-		if (task != null) {
+	public void delete(Button.ClickEvent event) {
+		Notification.show("Task Deleted", Type.TRAY_NOTIFICATION);
+		getUI().service.delete(currentTask);
+		getUI().taskList.select(null);
+		getUI().refreshTasks();
+	}
+
+	void edit(Task currentTask) {
+		this.currentTask = currentTask;
+		if (currentTask != null) {
 			// Bind the properties of the task POJO to fiels in this form
-			formFieldBindings = BeanFieldGroup.bindFieldsBuffered(task,
+			formFieldBindings = BeanFieldGroup.bindFieldsBuffered(currentTask,
 					this);
 			firstName.focus();
 		}
-		setVisible(task != null);
+		setVisible(currentTask != null);
 	}
 
 	@Override

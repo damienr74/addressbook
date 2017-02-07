@@ -19,9 +19,9 @@ public class Task implements Serializable, Cloneable {
 
 	private String firstName = "";
 	private String lastName = "";
-	private String taskDescription = "";
+	private String task = "";
 	private Date startDate;
-	private Date endDate;
+	private Date expectedEndDate;
 
 	public Long getId() {
 		return id;
@@ -55,20 +55,20 @@ public class Task implements Serializable, Cloneable {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
-		return endDate;
+	public Date getExpectedEndDate() {
+		return expectedEndDate;
 	}
 
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
+	public void setExpectedEndDate(Date expectedEndDate) {
+		this.expectedEndDate = expectedEndDate;
 	}
 
-	public String getTaskDescription() {
-		return taskDescription;
+	public String getTask() {
+		return task;
 	}
 
-	public void setTaskDescription(String taskDescription) {
-		this.taskDescription = taskDescription;
+	public void setTask(String task) {
+		this.task = task;
 	}
 
 	@Override
@@ -83,8 +83,8 @@ public class Task implements Serializable, Cloneable {
 	@Override
 	public String toString() {
 		return "Task{" + "id=" + id + ", firstName=" + firstName +
-			", lastName=" + lastName + ", taskDescription=" + taskDescription +
-			", startDate=" + startDate + ", endDate=" + endDate + '}';
+			", lastName=" + lastName + ", task=" + task +
+			", startDate=" + startDate + ", expectedEndDate=" + expectedEndDate + '}';
 	}
 
 }
